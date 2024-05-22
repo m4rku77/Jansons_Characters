@@ -7,7 +7,7 @@ public class SceneChanger : MonoBehaviour
 {
     public void ToFirstScene()
     {
-        SceneManager.LoadScene("FirstScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
     public void ToSecondScene()
