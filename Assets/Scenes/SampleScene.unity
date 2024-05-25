@@ -250,8 +250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: -13}
-  m_SizeDelta: {x: 200, y: 221.0827}
+  m_AnchoredPosition: {x: 131.98, y: -45.466}
+  m_SizeDelta: {x: 263.9537, y: 286.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &761102890
 MonoBehaviour:
@@ -297,9 +297,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1051023212}
-        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: Quit
+      - m_Target: {fileID: 770404385}
+        m_TargetAssemblyTypeName: Quit, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -347,6 +347,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761102888}
   m_CullTransparentMesh: 1
+--- !u!1 &770404383
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 770404384}
+  - component: {fileID: 770404385}
+  m_Layer: 0
+  m_Name: quitGame manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &770404384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770404383}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 29.800404, y: -65.52465, z: 97034.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &770404385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770404383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26c2d076c2d4c704fac83fbccec37649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &929468807
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,8 +557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -93.0365, y: -11.862}
-  m_SizeDelta: {x: 213.927, y: 236.2758}
+  m_AnchoredPosition: {x: -138.94, y: -45.465}
+  m_SizeDelta: {x: 277.8806, y: 286.0176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &952917481
 MonoBehaviour:
@@ -804,8 +848,8 @@ Transform:
   m_GameObject: {fileID: 1791601082}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1454, y: 2.369, z: -49.67755}
-  m_LocalScale: {x: 126.91562, y: 105.293884, z: 0.5519728}
+  m_LocalPosition: {x: 1.0575, y: -0.834, z: -49.67755}
+  m_LocalScale: {x: 150.91296, y: 144.92188, z: 0.5519728}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 929468808}
@@ -817,3 +861,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 929468808}
   - {fileID: 1110840335}
+  - {fileID: 770404384}
