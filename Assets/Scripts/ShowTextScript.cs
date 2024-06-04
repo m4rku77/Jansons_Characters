@@ -10,8 +10,9 @@ public class ShowTextScript : MonoBehaviour
     public void GetText()
     {
         string vardsText = vards.text;
-        string gadsText = gads.text;
+        int gadsValue = int.Parse(gads.text); // Parse the input string to an integer
+        int age = 2024 - gadsValue; // Calculate age by subtracting birth year from current year
 
-        inputField.text = "Vards: " + vardsText + ", Gads: " + gadsText;
+        inputField.text = "Terarists - " + vardsText + ", ir " + age + " gadus vecs!"; // Display the result
     }
 }
