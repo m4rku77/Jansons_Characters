@@ -7,19 +7,16 @@ public class ImageScript : MonoBehaviour
 {
     public GameObject Default;
     public GameObject wizzard;
-    public GameObject leftToggle;
-    public GameObject rightToggle;
     public Sprite[] spriteArray;
     public GameObject darbibas;
-    public GameObject sizeSlider;
-    public GameObject rotationSlider;
+    public GameObject SliderSize;
+    public GameObject SliderRotation;
 
 
     public void showDefault(bool value)
     {
         Default.SetActive(value);
-        leftToggle.GetComponent<Toggle>().interactable = value;
-        rightToggle.GetComponent<Toggle>().interactable = value;
+        
     }
 
   
@@ -29,15 +26,6 @@ public class ImageScript : MonoBehaviour
     }
 
 
-    public void toLeft()
-    {
-        Default.transform.localScale = new Vector2(1, 1);
-    }
-
-    public void toRight()
-    {
-        Default.transform.localScale = new Vector2(-1, 1);
-    }
 
     public void changeImage(int index)
     {
@@ -47,20 +35,18 @@ public class ImageScript : MonoBehaviour
         else if(index == 1)
             darbibas.GetComponent<Image>().sprite = spriteArray[1];
 
-        else if(index == 2)
-            darbibas.GetComponent<Image>().sprite = spriteArray[2];
     }
 
 
     public void changeSize()
     {
-        float size = sizeSlider.GetComponent<Slider>().value;
+        float size = SliderSize.GetComponent<Slider>().value;
         darbibas.transform.localScale = new Vector2(1F * size, 1F * size);
     }
 
     public void changeRotation()
     {
-        float rotation = rotationSlider.GetComponent<Slider>().value;
+        float rotation = SliderRotation.GetComponent<Slider>().value;
         darbibas.transform.localRotation = Quaternion.Euler(0, 0, rotation*360);
     }
 }
