@@ -1,52 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageScript : MonoBehaviour
+public class ImageScript: MonoBehaviour
 {
-    public GameObject Default;
-    public GameObject wizzard;
+    public GameObject image;
     public Sprite[] spriteArray;
-    public GameObject darbibas;
-    public GameObject SliderSize;
-    public GameObject SliderRotation;
+    public Slider SliderSize;
+    public Slider SliderRotation;
 
-
-    public void showDefault(bool value)
+    private void Start()
     {
-        Default.SetActive(value);
-        
+        // Hide the sliders at the beginning
+        SliderSize.gameObject.SetActive(false);
+        SliderRotation.gameObject.SetActive(false);
     }
 
-  
-    public void showWizzard(bool value)
+    public void ChangeImage(int index)
     {
-        wizzard.SetActive(value);
+        if (index >= 0 && index < spriteArray.Length)
+        {
+            image.GetComponent<Image>().sprite = spriteArray[index];
+        }
+        else
+        {
+            Debug.LogWarning("Invalid index for sprite array!");
+        }
     }
 
-
-
-    public void changeImage(int index)
+    public void ChangeSize()
     {
-        if (index == 0)
-            darbibas.GetComponent<Image>().sprite = spriteArray[0];
-
-        else if(index == 1)
-            darbibas.GetComponent<Image>().sprite = spriteArray[1];
-
+        float size = SliderSize.value;
+        image.transform.localScale = new Vector3(size, size, 1f);
     }
 
-
-    public void changeSize()
+    public void ChangeRotation()
     {
-        float size = SliderSize.GetComponent<Slider>().value;
-        darbibas.transform.localScale = new Vector2(1F * size, 1F * size);
+        float rotation = SliderRotation.value;
+        image.transform.localRotation = Quaternion.Euler(0f, 0f, rotation * 360f);
     }
 
-    public void changeRotation()
+    // Show/hide sliders
+    public void ToggleSliders(bool show)
     {
-        float rotation = SliderRotation.GetComponent<Slider>().value;
-        darbibas.transform.localRotation = Quaternion.Euler(0, 0, rotation*360);
+        SliderSize.gameObject.SetActive(show);
+        SliderRotation.gameObject.SetActive(show);
     }
 }
