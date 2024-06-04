@@ -1,48 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IPointerDownHandler, 
-    IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rTransform;
     public Canvas canv;
 
     void Start()
     {
-        rTransform = GetComponent<RectTransform>();    
+        rTransform = GetComponent<RectTransform>();
     }
 
-    public void OnPointerDown(PointerEventData data)
+    public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("Izdarīts klikšis uz velkama objekta!");
     }
 
-    public void OnBeginDrag(PointerEventData data)
+    public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("Uzsākta vilkšana!");
     }
 
-    public void OnDrag(PointerEventData data)
+    public void OnDrag(PointerEventData eventData)
     {
-        Vector2 mousePosition =
-            new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        // Convert mouse position to canvas space
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canv.transform as RectTransform, eventData.position, canv.worldCamera, out Vector2 localPoint);
 
-        mousePosition.x =
-            Mathf.Clamp(mousePosition.x, 0 + rTransform.rect.width / 2, 
-            Screen.width - rTransform.rect.width / 2);
+        // Set the position of the RectTransform to the calculated local point
+        rTransform.localPosition = localPoint;
 
-        mousePosition.y =
-            Mathf.Clamp(mousePosition.y, 0 + rTransform.rect.height / 2,
-            Screen.height - rTransform.rect.height / 2);
-
-        rTransform.position = mousePosition;
-        Debug.Log("x=" + mousePosition.x + " un y=" + mousePosition.y);
+        Debug.Log("x=" + localPoint.x + " un y=" + localPoint.y);
     }
 
-
-    public void OnEndDrag(PointerEventData data)
+    public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("Objekts atlaists, vilkšana pārtraukta!");
     }

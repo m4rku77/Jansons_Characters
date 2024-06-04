@@ -8,11 +8,90 @@ public class ImageScript : MonoBehaviour
     public Slider SliderSize;
     public Slider SliderRotation;
 
+    public GameObject body1;
+    public GameObject body2;
+    public GameObject body3;
+
+    public GameObject Kurpes1;
+    public GameObject Kurpes2;
+    public GameObject Kurpes3;
+
+    public GameObject RozaHelmet;
+    public GameObject FireHelmet;
+    public GameObject StoneHlemet;
+
+    private bool bodyShown = true;
+    private bool kurpesShown = true;
+    private bool helmetShown = true;
+
     private void Start()
     {
         // Ensure sliders are visible when the game starts
         SliderSize.gameObject.SetActive(true);
         SliderRotation.gameObject.SetActive(true);
+    }
+
+    public void showBody(bool value)
+    {
+        body1.SetActive(value);
+        body2.SetActive(value);
+        body3.SetActive(value);
+    }
+
+    public void showKurpes(bool value)
+    {
+        Kurpes1.SetActive(value);
+        Kurpes2.SetActive(value);
+        Kurpes3.SetActive(value);
+    }
+
+    public void showHelmet(bool value)
+    {
+        RozaHelmet.SetActive(value);
+        FireHelmet.SetActive(value);
+        StoneHlemet.SetActive(value);
+    }
+
+    public void ToggleBody(bool value)
+    {
+        if (value)
+        {
+            showBody(bodyShown);
+            bodyShown = !bodyShown; // Toggle the state
+        }
+        else
+        {
+            showBody(false); // Hide the body GameObjects
+            bodyShown = true; // Reset the state
+        }
+    }
+
+    public void ToggleKurpes(bool value)
+    {
+        if (value)
+        {
+            showKurpes(kurpesShown);
+            kurpesShown = !kurpesShown; // Toggle the state
+        }
+        else
+        {
+            showKurpes(false); // Hide the kurpes GameObjects
+            kurpesShown = true; // Reset the state
+        }
+    }
+
+    public void ToggleHelmet(bool value)
+    {
+        if (value)
+        {
+            showHelmet(helmetShown);
+            helmetShown = !helmetShown; // Toggle the state
+        }
+        else
+        {
+            showHelmet(false); // Hide the helmet GameObjects
+            helmetShown = true; // Reset the state
+        }
     }
 
     public void ChangeImage(int index)
