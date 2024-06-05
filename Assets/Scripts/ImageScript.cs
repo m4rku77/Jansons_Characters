@@ -20,7 +20,12 @@ public class ImageScript : MonoBehaviour
     public GameObject FireHelmet;
     public GameObject StoneHlemet;
 
-    public Text InfoText; // Reference to the Text component in the ScrollView
+    public Text InfoText;
+
+    public AudioClip sound0; // Audio clip for character 0
+    public AudioClip sound1; // Audio clip for character 1
+
+    private AudioSource audioSource;
 
     private bool bodyShown = true;
     private bool kurpesShown = true;
@@ -28,9 +33,10 @@ public class ImageScript : MonoBehaviour
 
     private void Start()
     {
-        // Ensure sliders are visible when the game starts
         SliderSize.gameObject.SetActive(true);
         SliderRotation.gameObject.SetActive(true);
+
+        audioSource = character.AddComponent<AudioSource>();
     }
 
     public void showBody(bool value)
@@ -59,12 +65,12 @@ public class ImageScript : MonoBehaviour
         if (value)
         {
             showBody(bodyShown);
-            bodyShown = !bodyShown; // Toggle the state
+            bodyShown = !bodyShown;
         }
         else
         {
-            showBody(false); // Hide the body GameObjects
-            bodyShown = true; // Reset the state
+            showBody(false);
+            bodyShown = true;
         }
     }
 
@@ -73,12 +79,12 @@ public class ImageScript : MonoBehaviour
         if (value)
         {
             showKurpes(kurpesShown);
-            kurpesShown = !kurpesShown; // Toggle the state
+            kurpesShown = !kurpesShown;
         }
         else
         {
-            showKurpes(false); // Hide the kurpes GameObjects
-            kurpesShown = true; // Reset the state
+            showKurpes(false);
+            kurpesShown = true;
         }
     }
 
@@ -87,12 +93,12 @@ public class ImageScript : MonoBehaviour
         if (value)
         {
             showHelmet(helmetShown);
-            helmetShown = !helmetShown; // Toggle the state
+            helmetShown = !helmetShown;
         }
         else
         {
-            showHelmet(false); // Hide the helmet GameObjects
-            helmetShown = true; // Reset the state
+            showHelmet(false);
+            helmetShown = true;
         }
     }
 
@@ -101,7 +107,8 @@ public class ImageScript : MonoBehaviour
         if (index >= 0 && index < spriteArray.Length)
         {
             character.GetComponent<Image>().sprite = spriteArray[index];
-            UpdateInfoText(index); // Update the information text
+            UpdateInfoText(index);
+            PlayCharacterSound(index); // Play the sound for the selected character
         }
         else
         {
@@ -121,20 +128,17 @@ public class ImageScript : MonoBehaviour
         character.transform.localRotation = Quaternion.Euler(0f, 0f, rotation * 360f);
     }
 
-    // Show/hide sliders
     public void ToggleSliders(bool show)
     {
         SliderSize.gameObject.SetActive(show);
         SliderRotation.gameObject.SetActive(show);
     }
 
-    // Method to update the information text based on the selected skin
     private void UpdateInfoText(int index)
     {
         string[] infoTexts = {
-            "Default: Hei! Esmu parasts cilv?ks, kurš dara cilv?c?gas lietas! ;] ",
-            "Wizard: UUUUuuUUUuU!!!! Ar mani nevajag jokoties, es m?dzu nodarboties ar ma?iju un noburt tos, kuri man nepat?k!",
-            
+            "Default: Hei! Esmu parasts cilveks, kurs dara cilvecigas lietas! ;] ",
+            "Wizard: UUUUuuUUUuU!!!! Ar mani nevajag jokoties, es medzu nodarboties ar magiju un noburt tos, kuri man nepatik!",
         };
 
         if (index >= 0 && index < infoTexts.Length)
@@ -144,6 +148,23 @@ public class ImageScript : MonoBehaviour
         else
         {
             InfoText.text = "No information available.";
+        }
+    }
+
+    private void PlayCharacterSound(int index)
+    {
+        if (index == 0)
+        {
+            audioSource.clip = sound0;
+        }
+        else if (index == 1)
+        {
+            audioSource.clip = sound1;
+        }
+
+        if (audioSource.clip != null)
+        {
+            audioSource.Play();
         }
     }
 }
