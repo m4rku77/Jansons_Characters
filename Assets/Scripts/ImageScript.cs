@@ -20,6 +20,8 @@ public class ImageScript : MonoBehaviour
     public GameObject FireHelmet;
     public GameObject StoneHlemet;
 
+    public Text InfoText; // Reference to the Text component in the ScrollView
+
     private bool bodyShown = true;
     private bool kurpesShown = true;
     private bool helmetShown = true;
@@ -99,6 +101,7 @@ public class ImageScript : MonoBehaviour
         if (index >= 0 && index < spriteArray.Length)
         {
             character.GetComponent<Image>().sprite = spriteArray[index];
+            UpdateInfoText(index); // Update the information text
         }
         else
         {
@@ -123,5 +126,24 @@ public class ImageScript : MonoBehaviour
     {
         SliderSize.gameObject.SetActive(show);
         SliderRotation.gameObject.SetActive(show);
+    }
+
+    // Method to update the information text based on the selected skin
+    private void UpdateInfoText(int index)
+    {
+        string[] infoTexts = {
+            "Default: Hei! Esmu parasts cilv?ks, kurš dara cilv?c?gas lietas! ;] ",
+            "Wizard: UUUUuuUUUuU!!!! Ar mani nevajag jokoties, es m?dzu nodarboties ar ma?iju un noburt tos, kuri man nepat?k!",
+            
+        };
+
+        if (index >= 0 && index < infoTexts.Length)
+        {
+            InfoText.text = infoTexts[index];
+        }
+        else
+        {
+            InfoText.text = "No information available.";
+        }
     }
 }
